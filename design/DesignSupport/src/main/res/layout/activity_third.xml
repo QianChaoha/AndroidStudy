@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--CoordinatorLayout跟帧布局差不多-->
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--AppBarLayout中的属性 app:layout_scrollFlags="scroll|enterAlways" 设置后实现上推Toolbar隐藏,下拉Toolbar出现的效果
+    用enterAlwaysCollapsed设置下拉到头时Toolbar才出现
+    app:layout_scrollFlags="scroll|exitUntilCollapsed" 上推时ToolBar不会隐藏掉
+    app:layout_collapseMode="parallax"使用视差效果（默认效果:上推多少折叠多少）-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--CollapsingToolbarLayout extends FrameLayout
+        app:contentScrim="?attr/colorPrimaryDark"指定CollapsingToolbarLayout完全被滚出到屏幕外时的ColorDrawable
+        CollapsingToolbarLayout作用是给Toolbar加个高度为200dp的图片,否则ImageView和Toolbar，TextView从上往下垂直排列，
+        然后上推时,最下面的Toolbar，TextView悬浮(app:layout_scrollFlags="scroll|enterAlwaysCollapsed"设给ImageView)-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/colorAccent"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@mipmap/ic_launcher"
+                app:layout_collapseMode="parallax"/>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+            </android.support.v7.widget.Toolbar>
+            <!--<android.support.v7.widget.Toolbar-->
+                <!--android:id="@+id/toolBar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="?actionBarSize"-->
+                <!--app:layout_scrollFlags="scroll|enterAlwaysCollapsed">-->
+            <!--</android.support.v7.widget.Toolbar>-->
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="悬停,上推时不会跟Toolbar一样隐藏"/>
+    </android.support.design.widget.AppBarLayout>
+    <!--AppBarLayout与RecyclerView在顶部会有重叠，使用 app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
+    <!--app:layout_anchor="@id/appbar"  将FloatingActionButton挂载到id为appbar-->
+    <!--app:layout_anchorGravity="start|bottom"  FloatingActionButton在appbar的左下方-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="start|bottom"/>
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?actionBarSize"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+</android.support.design.widget.CoordinatorLayout>
