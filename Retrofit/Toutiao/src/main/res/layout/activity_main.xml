@@ -16,8 +16,12 @@
         <include layout="@layout/toolbar"/>
 
         <include layout="@layout/container"/>
-
+        <!--属性一: iteamBackground 指定的是底部导航栏的背景颜色,默认是主题的颜色;-->
+        <!--属性二: iteamIconTint 指的是导航栏中图片的颜色-->
+        <!--属性三: iteamTextColor 指的是导航栏文字的颜色-->
+        <!--属性四: menu-->
         <android.support.design.widget.BottomNavigationView
+
             android:id="@+id/bottom_navigation"
             style="@style/Widget.Design.BottomNavigationView"
             android:layout_width="match_parent"

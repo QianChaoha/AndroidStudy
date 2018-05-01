@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by Meiji on 2016/12/12.
@@ -90,12 +91,21 @@ public class NewsTabLayout extends Fragment {
         viewPager.setOffscreenPageLimit(15);
 
         observable = RxBus.getInstance().register(NewsTabLayout.TAG);
-        observable.subscribe(isRefresh -> {
-            if (isRefresh) {
-                initTabs();
-                adapter.recreateItems(fragmentList, titleList);
+        observable.subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean isRefresh) throws Exception {
+                if (isRefresh) {
+                    initTabs();
+                    adapter.recreateItems(fragmentList, titleList);
+                }
             }
         });
+//        observable.subscribe(isRefresh -> {
+//            if (isRefresh) {
+//                initTabs();
+//                adapter.recreateItems(fragmentList, titleList);
+//            }
+//        });
     }
 
     private void initTabs() {

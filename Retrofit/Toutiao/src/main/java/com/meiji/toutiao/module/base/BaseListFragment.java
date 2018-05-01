@@ -71,13 +71,6 @@ public abstract class BaseListFragment<T extends IBasePresenter> extends LazyLoa
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        // 设置下拉刷新的按钮的颜色
-        swipeRefreshLayout.setColorSchemeColors(SettingUtil.getInstance().getColor());
-    }
-
-    @Override
     public void onShowNoMore() {
         getActivity().runOnUiThread(() -> {
             if (oldItems.size() > 0) {

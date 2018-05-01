@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    <!--AppbarLayout：继承了LinearLayout(默认的AppBarLayout是垂直方向)，它是为了Material Design设计-->
+    <!--的App Bar，它的作用是把AppBarLayout包裹的内容都作为AppBar。说白了它的出现就是为了和CoordinatorLayout-->
+    <!--搭配使用，实现一些炫酷的效果的。没有CoordinatorLayout，它和Linearlayout没区别-->
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/AppBarLayout01"
     android:layout_width="match_parent"
@@ -14,6 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
 </android.support.design.widget.AppBarLayout>

@@ -86,9 +86,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         TapTargetSequence sequence = new TapTargetSequence(this)
                 .targets(
                         TapTarget.forToolbarMenuItem(toolbar, R.id.action_search, "点击这里进行搜索")
-                                .dimColor(android.R.color.black)
-                                .outerCircleColor(R.color.colorPrimary)
-                                .drawShadow(true)
+                                .dimColor(android.R.color.black)//将变暗与给定颜色的30％的不透明度的观点背后
+                                .outerCircleColor(R.color.colorPrimary)////指定外圆颜色
+                                .drawShadow(true) //是否绘制阴影
                                 .id(1),
                         TapTarget.forToolbarNavigationIcon(toolbar, "点击这里展开侧栏")
                                 .dimColor(android.R.color.black)
@@ -138,6 +138,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toolbar = findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_activity_main);
         bottom_navigation = findViewById(R.id.bottom_navigation);
+//        当我们底部导航为3个时，感觉体验还是很舒服的，但是一旦大于3个时，就只显示选中的item了，
+//        其他的变很小，而且没有显示标题，切换的时候，也十分夸张，显得很别扭
         BottomNavigationViewHelper.disableShiftMode(bottom_navigation);
         setSupportActionBar(toolbar);
         bottom_navigation.setOnNavigationItemSelectedListener(item -> {
@@ -162,9 +164,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
 
         drawer_layout = findViewById(R.id.drawer_layout);
+        //最后两个参数:菜单显示时的中文描述,菜单关闭时的中文描述
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //添加菜单拖动监听事件  根据菜单的拖动距离 将距离折算成旋转角度
         drawer_layout.addDrawerListener(toggle);
+        //设置显示三横杠
         toggle.syncState();
 
         nav_view = findViewById(R.id.nav_view);
@@ -292,6 +297,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                return false;
 
             case R.id.nav_switch_night_mode:
+                //切换主题步骤 https://segmentfault.com/a/1190000011472198
                 int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                 if (mode == Configuration.UI_MODE_NIGHT_YES) {
                     SettingUtil.getInstance().setIsNightMode(false);

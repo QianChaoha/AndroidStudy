@@ -40,7 +40,8 @@ public class RxBus {
             subjectList = new ArrayList<>();
             subjectMapper.put(tag, subjectList);
         }
-
+//        与普通的Subject不同，在订阅时并不立即触发订阅事件，而是允许我们
+// 在任意时刻手动调用onNext(),onError(),onCompleted来触发事件
         Subject<T> subject = PublishSubject.create();
         subjectList.add(subject);
 
